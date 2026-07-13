@@ -2,11 +2,17 @@
 
 import { useEffect, useState } from 'react';
 
-export function CustomButton() {
+type CustomButtonProps = {
+  text: string;
+};
+
+export function CustomButton({ text }: CustomButtonProps) {
   const [theme, setTheme] = useState('light');
+
   useEffect(() => {
-    document.documentElement.setAttribute('data-mode', theme);
+    document.documentElement.classList.toggle('dark');
   }, [theme]);
+
   function handleChangeTheme(e?: React.MouseEvent<HTMLButtonElement>) {
     e?.preventDefault();
     setTheme(prevTheme => {
@@ -19,10 +25,11 @@ export function CustomButton() {
 
   return (
     <button
-      className='bg-amber-800 dark:bg-amber-200'
-      onClick={e => handleChangeTheme(e)}
+      id='but'
+      className='bg-violet-400 dark:bg-blue-300'
+      onClick={() => handleChangeTheme()}
     >
-      Change theme
+      {text}
     </button>
   );
 }

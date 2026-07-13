@@ -2,21 +2,25 @@
 import clsx from 'clsx';
 
 export function Header() {
-  console.log('Header client renderizado');
-
   return (
-    <h1
-      className={clsx(
-        'flex',
-        'items-center',
-        'justify-center',
-        'text-3xl',
-        'font-bold',
-        'text-gray-900',
-      )}
-      onClick={() => window.alert('Clicado')}
-    >
-      Texto do H1
-    </h1>
+    <header>
+      <h1
+        className={clsx(
+          'text-4xl',
+          'font-extrabold',
+          'flex',
+          'w-full',
+          'items-center',
+          'justify-center',
+          'py-18',
+          'transition-all',
+          'sm:text-5xl',
+          'sm:justify-start',
+        )}
+        onClick={() => window.alert('Clicado')}
+      >
+        The Blog
+      </h1>
+    </header>
   );
 }

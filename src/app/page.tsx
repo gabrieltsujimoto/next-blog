@@ -1,33 +1,27 @@
+import { Container } from '@/components/Container';
 import { CustomButton } from '@/components/CustomButton';
+import { FeaturedPost } from '@/components/FeaturedPost';
+import { Header } from '@/components/Header';
 import { PostList } from '@/components/PostsList';
 import { SpinLoading } from '@/components/SpinLoading';
-import clsx from 'clsx';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 export default function HomePage() {
   return (
-    <div
-      className={clsx(
-        'text-center',
-        'border-red-500',
-        'w-full',
-        'text-slate-900',
-        'bg-slate-100',
-        'min-h-screen',
-        'dark:bg-amber-200',
-      )}
-    >
-      <header className={clsx('font-bold')}>
-        <h1>The blog</h1>
-      </header>
+    <Container>
+      <Header />
       <Suspense fallback={<SpinLoading />}>
+        <Link href={'#'} className='mb-5'>
+          <FeaturedPost />
+        </Link>
         <PostList />
       </Suspense>
 
-      <CustomButton />
+      <CustomButton text='Change Theme' />
       <footer>
         <span>Desenvolvido por Gabriel.</span>
       </footer>
-    </div>
+    </Container>
   );
 }
