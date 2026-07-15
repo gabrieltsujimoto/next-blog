@@ -4,7 +4,6 @@ import { FeaturedPost } from '@/components/FeaturedPost';
 import { Header } from '@/components/Header';
 import { PostList } from '@/components/PostsList';
 import { SpinLoading } from '@/components/SpinLoading';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 export default function HomePage() {
@@ -12,9 +11,8 @@ export default function HomePage() {
     <Container>
       <Header />
       <Suspense fallback={<SpinLoading />}>
-        <Link href={'#'} className='mb-5'>
-          <FeaturedPost />
-        </Link>
+        <FeaturedPost />
+
         <PostList />
       </Suspense>
 

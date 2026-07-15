@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { PostModel } from '@/models/post/post-model';
+import clsx from 'clsx';
 
 type PostItemProps = {
   postContent: PostModel;
@@ -9,12 +10,21 @@ type PostItemProps = {
 
 export async function PostItem({ img, postContent }: PostItemProps) {
   return (
-    <div className='w-full py-4'>
-      <div className='my-5 rounded overflow-hidden h-50 relative sm:grid-cols-2'>
-        <Image src={img} alt='Imagem teste' fill />
+    <div className='w-full h-full py-4 grid-rows-2'>
+      <div
+        className={clsx(
+          'my-5',
+          'rounded-xl',
+          'overflow-hidden',
+          'h-40',
+          'w-full',
+          'relative',
+        )}
+      >
+        <Image src={img} alt='Imagem teste' objectFit='cover' fill />
       </div>
 
-      <div className='font-light text-xs text-start sm:text-sm'>
+      <div className='font-light text-sm text-start sm:text-sm '>
         <p className='pb-1 text-gray-300'>
           {postContent.createdAt ? postContent.createdAt : '01/01/2000 20:45'}
         </p>
@@ -22,8 +32,7 @@ export async function PostItem({ img, postContent }: PostItemProps) {
           {postContent.title ? <p>{postContent.title}</p> : 'Post titulo'}
         </h1>
         <p className='text-start'>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, ut
-          nisi?
+          {postContent.excerpt ? <p>{postContent.excerpt}</p> : 'Post titulo'}
         </p>
       </div>
     </div>
