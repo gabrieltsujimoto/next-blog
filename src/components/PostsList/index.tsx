@@ -20,7 +20,12 @@ export async function PostList() {
     >
       {posts.map(post => {
         return (
-          <PostItem key={post.id} img={post.coverImageUrl} postContent={post} />
+          <PostItem
+            link={post.slug}
+            key={post.id}
+            img={post.coverImageUrl}
+            postContent={post}
+          />
         );
       })}
     </div>

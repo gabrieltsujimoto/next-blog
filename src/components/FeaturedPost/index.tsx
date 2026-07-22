@@ -3,6 +3,7 @@ import img from '../../../public/images/bryen_0.png';
 import Image from 'next/image';
 import clsx from 'clsx';
 import Link from 'next/link';
+import PostHeading from '../PostHeading';
 
 export function FeaturedPost() {
   return (
@@ -30,18 +31,22 @@ export function FeaturedPost() {
           )}
         >
           <Image
-            className='group-hover:scale-110 group-hover:transition-all group-hover:duration-700'
+            className='h-full group-hover:scale-110 object-center object-cover group-hover:transition-all group-hover:duration-700'
             src={img}
             alt='Imagem teste'
+            priority
           />
         </div>
-        <div className='gap-2 h-fit text-start'>
-          <span className='text-gray-500 font-light text-sm'>
+        <div className='gap-2 h-fit sm:h-full text-start flex flex-col justify-center'>
+          <time
+            dateTime='2000-01-01'
+            className='text-slate-600 font-light text-smr'
+          >
             01/01/2000 20:45
-          </span>
-          <h1 className={clsx('font-bold', 'text-2xl', 'sm:text-4xl')}>
-            Post titulo
-          </h1>
+          </time>
+          <PostHeading as='h1' url='#'>
+            Titulo do featured post
+          </PostHeading>
           <p className='font-normal text-sm'>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, ut
             nisi? Lorem ipsum dolor sit amet consectetur, adipisicing elit.

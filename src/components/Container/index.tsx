@@ -10,7 +10,7 @@ export function Container({ children }: ContainerProps) {
     <div
       className={clsx([
         'text-center',
-        'w-screen',
+        'w-full',
         'text-slate-900',
         'bg-slate-100',
         'min-h-screen',
