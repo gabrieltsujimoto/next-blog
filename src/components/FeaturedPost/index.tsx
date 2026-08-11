@@ -4,8 +4,11 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import Link from 'next/link';
 import PostHeading from '../PostHeading';
+import { findAllPublicPosts } from '@/lib/post/queries';
 
-export function FeaturedPost() {
+export async function FeaturedPost() {
+  const posts = await findAllPublicPosts();
+  const post = posts[0];
   return (
     <Link className='group' href={''}>
       <div

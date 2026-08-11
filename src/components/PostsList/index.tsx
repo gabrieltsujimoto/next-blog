@@ -1,9 +1,11 @@
 import { postRepository } from '@/repositories/post';
 import { PostItem } from '../PostItem';
 import clsx from 'clsx';
+import { findAllPublicPosts } from '@/lib/post/queries';
+import { PostModel } from '@/models/post/post-model';
 
 export async function PostList() {
-  const posts = await postRepository.findAll();
+  const posts = await findAllPublicPosts();
 
   return (
     <div
@@ -18,7 +20,7 @@ export async function PostList() {
         'md:grid-cols-3',
       )}
     >
-      {posts.map(post => {
+      {posts.map((post: PostModel) => {
         return (
           <PostItem
             link={post.slug}
