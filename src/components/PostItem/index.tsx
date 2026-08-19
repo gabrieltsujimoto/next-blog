@@ -15,7 +15,7 @@ export async function PostItem({ img, postContent, link }: PostItemProps) {
   const date = formatDateTime(postContent.createdAt);
 
   return (
-    <Link href={link}>
+    <Link href={`/post/${link}`}>
       <div className='w-full h-full py-4 grid-rows-2'>
         <div
           className={clsx(

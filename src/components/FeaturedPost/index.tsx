@@ -4,13 +4,14 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import Link from 'next/link';
 import PostHeading from '../PostHeading';
-import { findAllPublicPosts } from '@/lib/post/queries';
+import { findAllPublicPostsCached } from '@/lib/post/queries';
 
 export async function FeaturedPost() {
-  const posts = await findAllPublicPosts();
+  const posts = await findAllPublicPostsCached();
   const post = posts[0];
+  const postLink = `/post/${post.slug}`;
   return (
-    <Link className='group' href={''}>
+    <Link className='group' href={postLink}>
       <div
         className={clsx(
           'grid',

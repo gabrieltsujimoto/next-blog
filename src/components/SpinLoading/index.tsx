@@ -17,7 +17,7 @@ export function SpinLoading({ containerClasses }: SpinLoadingProps) {
     <div className={classes}>
       <div
         className={clsx(
-          'w-10 h-10 border-5 border-green-300 border-t-transparent rounded-full animate-spin',
+          'w-10 h-10 border-5 border-gray-600 border-t-transparent rounded-full animate-spin',
         )}
       ></div>
     </div>
