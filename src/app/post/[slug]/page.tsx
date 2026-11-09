@@ -1,9 +1,7 @@
-import PostHeading from '@/components/PostHeading';
 import SinglePost from '@/components/SinglePost';
 import { SpinLoading } from '@/components/SpinLoading';
 import { findBySlugCached } from '@/lib/post/queries';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 type PostSlugPageProps = {

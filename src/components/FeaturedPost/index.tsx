@@ -5,13 +5,14 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import PostHeading from '../PostHeading';
 import { findAllPublicPostsCached } from '@/lib/post/queries';
+import { formatDateTime } from '@/utils/format-datetime';
 
 export async function FeaturedPost() {
   const posts = await findAllPublicPostsCached();
   const post = posts[0];
   const postLink = `/post/${post.slug}`;
   return (
-    <Link className='group' href={postLink}>
+    <div className='group'>
       <div
         className={clsx(
           'grid',
@@ -34,31 +35,30 @@ export async function FeaturedPost() {
             'overflow-hidden',
           )}
         >
-          <Image
-            className='h-full group-hover:scale-110 object-center object-cover group-hover:transition-all group-hover:duration-700'
-            src={img}
-            alt='Imagem teste'
-            priority
-          />
+          <Link href={postLink}>
+            <Image
+              className='h-full group-hover:scale-110 object-center object-cover group-hover:transition-all group-hover:duration-700'
+              src={img}
+              alt={post.excerpt}
+              priority
+            />
+          </Link>
         </div>
-        <div className='gap-2 h-fit sm:h-full text-start flex flex-col justify-center'>
-          <time
-            dateTime='2000-01-01'
-            className='text-slate-600 font-light text-smr'
-          >
-            01/01/2000 20:45
-          </time>
-          <PostHeading as='h1' url='#'>
-            Titulo do featured post
+        <div className='gap-2 h-fit sm:h-full flex flex-col justify-center w-full p-2'>
+          <PostHeading url={postLink} as='h1'>
+            <h1>{post.title}</h1>
           </PostHeading>
-          <p className='font-normal text-sm'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, ut
-            nisi? Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Minus, ut nisi? Lorem ipsum dolor sit amet consectetur, adipisicing
-            elit. Minus, ut nisi?
-          </p>
+          <div>
+            <time
+              className='text-slate-600 font-light text-sm w-full text-start'
+              dateTime={post.createdAt}
+            >
+              {formatDateTime(post.createdAt)}
+            </time>
+            <p className='my-2'>{post.content}</p>
+          </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
