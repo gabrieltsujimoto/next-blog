@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
 import { formatDateTime } from '@/utils/format-datetime';
+import { clsx } from 'clsx';
 
 type SinglePostProps = {
   slug: string;
@@ -25,15 +26,17 @@ export default async function SinglePost({ slug }: SinglePostProps) {
             alt={post.excerpt}
           />
         </div>
-        <PostHeading as={'h1'} url={`/post/${post.slug}`}>
-          {post.title}
-        </PostHeading>
-        <p className='text-start'>
-          {post.author} | {formatDateTime(post.createdAt)}
-        </p>
+        <div className={clsx(['my-2'])}>
+          <PostHeading as={'h1'} url={`/post/${post.slug}`}>
+            {post.title}
+          </PostHeading>
+          <p className='text-start font-thin text-sm opacity-70'>
+            {post.author} | {formatDateTime(post.createdAt)}
+          </p>
+        </div>
       </header>
-      <section className='inline-flex box-border border-red-800 border'>
-        <div className='border'>{post.content}</div>
+      <section className='inline-flex w-full my-2 text-justify'>
+        <p>{post.content}</p>
       </section>
     </article>
   );

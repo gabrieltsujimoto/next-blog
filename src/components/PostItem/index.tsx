@@ -47,7 +47,7 @@ export async function PostItem({ img, postContent, link }: PostItemProps) {
           <h1 className='font-bold mb-2 sm:text-lg/tight '>
             {postContent.title ? postContent.title : 'Post titulo'}
           </h1>
-          <p className='text-start'>
+          <p className='text-justify'>
             {postContent.excerpt ? postContent.excerpt : 'Post titulo'}
           </p>
         </div>

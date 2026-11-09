@@ -23,6 +23,7 @@ export async function FeaturedPost() {
           'sm:h-full',
           'sm:gap-8',
           'sm:mb-8',
+          'boder',
         )}
       >
         <div

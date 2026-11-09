@@ -5,7 +5,15 @@ import React from 'react';
 export default function Footer() {
   return (
     <footer>
-      <p className={clsx(['text-sm', 'font-bold', 'text-center', 'py-8'])}>
+      <p
+        className={clsx([
+          'text-sm',
+          'font-bold',
+          'text-center',
+          'py-8',
+          'bottom-0',
+        ])}
+      >
         <span>Copyright &copy; {new Date().getFullYear()} - </span>
         <Link href='/'>The Blog</Link>
       </p>

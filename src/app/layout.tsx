@@ -20,7 +20,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html id='root' lang='en' className='dark'>
-      <body className='min-h-full flex flex-col'>
+      <body className='h-full flex flex-col'>
         <SwapTheme />
         <Container>
           <Header />
