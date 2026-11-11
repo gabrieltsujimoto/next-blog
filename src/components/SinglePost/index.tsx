@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { formatDateTime } from '@/utils/format-datetime';
 import { clsx } from 'clsx';
+import { SafeMarkdown } from '../SafeMarkdown';
 
 type SinglePostProps = {
   slug: string;
@@ -35,8 +36,8 @@ export default async function SinglePost({ slug }: SinglePostProps) {
           </p>
         </div>
       </header>
-      <section className='inline-flex w-full my-2 text-justify'>
-        <p>{post.content}</p>
+      <section className='w-full my-2 text-justify mb-16'>
+        <SafeMarkdown markdown={post.content} />
       </section>
     </article>
   );

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { PostModel } from '@/models/post/post-model';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { formatDateTime, formatDistanceToNow } from '@/utils/format-datetime';
+import FormattedPostDate from '../FormattedPostDate';
 
 type PostItemProps = {
   postContent: PostModel;
@@ -12,8 +12,6 @@ type PostItemProps = {
 };
 
 export async function PostItem({ img, postContent, link }: PostItemProps) {
-  const date = formatDateTime(postContent.createdAt);
-
   return (
     <Link href={`/post/${link}`}>
       <div className='w-full h-full py-4 grid-rows-2'>
@@ -38,12 +36,8 @@ export async function PostItem({ img, postContent, link }: PostItemProps) {
         </div>
 
         <div className='font-light text-sm text-start sm:text-sm'>
-          <time
-            className='pb-1 text-gray-500'
-            title={formatDistanceToNow(postContent.createdAt)}
-          >
-            {postContent.createdAt ? date : 'Erro ao carregar data'}
-          </time>
+          <FormattedPostDate date={postContent.createdAt} />
+
           <h1 className='font-bold mb-2 sm:text-lg/tight '>
             {postContent.title ? postContent.title : 'Post titulo'}
           </h1>
