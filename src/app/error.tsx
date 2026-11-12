@@ -3,10 +3,10 @@ import React from 'react';
 
 import ErrorMessage from '@/components/ErrorMessage';
 
-function SlugErrorPage() {
+function RootErrorPage() {
   return (
     <ErrorMessage content='Deu ruim!' contentTitle='ERRO' pageTitle='ERRO' />
   );
 }
 
-export default SlugErrorPage;
+export default RootErrorPage;

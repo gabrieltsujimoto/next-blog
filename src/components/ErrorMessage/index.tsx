@@ -13,8 +13,8 @@ function ErrorMessage({ pageTitle, contentTitle, content }: ErrorMessageProps) {
       <title>{pageTitle}</title>
       <div className='flex justify-center items-center'>
         <div
-          className='flex flex-col items-center justify-center  text-center bg-slate-900 dark:bg-slate-100
-         text-slate-200 px-4 py-8 rounded-xl'
+          className='flex flex-col w-full items-center justify-center  text-center bg-slate-900 dark:bg-slate-100
+         text-slate-200 px-4 py-24 rounded-xl'
         >
           <h1 className='text-4xl md:text-6xl font-bold dark:text-slate-900 mb-4 font-mono'>
             {contentTitle}

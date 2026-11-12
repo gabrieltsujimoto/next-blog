@@ -1,5 +1,4 @@
 import ErrorMessage from '@/components/ErrorMessage';
-import Link from 'next/link';
 
 export default function NotFound() {
   return (
