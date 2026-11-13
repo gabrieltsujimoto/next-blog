@@ -18,6 +18,12 @@ env.SIMULATE_WAIT_IN_MS = '0';
 const simulateWaitMs = Number(process.env.SIMULATE_WAIT_IN_MS) || 0;
 
 export class JsonPostRepository implements PostRepository {
+  async findAll(): Promise<PostModel[]> {
+    await this.simulateWait();
+
+    const posts = await this.readFromDisk();
+    return posts;
+  }
   private async simulateWait() {
     if (simulateWaitMs <= 0) return;
 
@@ -45,7 +51,7 @@ export class JsonPostRepository implements PostRepository {
     }
     return post;
   }
-  async findBySlug(slug: string): Promise<PostModel> {
+  async findBySlugPublic(slug: string): Promise<PostModel> {
     await this.simulateWait();
     const posts = await this.findAllPublic();
     const post = posts.find(post => post.slug === slug);

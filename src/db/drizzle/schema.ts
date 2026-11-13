@@ -8,10 +8,10 @@ export const postsTable = sqliteTable('posts_table', {
   slug: text('slug').notNull().unique(),
   excerpt: text('excerpt').notNull().unique(),
   content: text('content').notNull(),
-  coverImageUrl: text('coverImageUrl').notNull().unique(),
+  coverImageUrl: text('cover_image_url').notNull().unique(),
   published: integer('published', { mode: 'boolean' }).notNull(),
-  createdAt: text('createdAt').notNull(),
-  updatedAt: text('updatedAt').notNull(),
+  createdAt: text('created_at').notNull(),
+  updatedAt: text('updated_at').notNull(),
   author: text('author').notNull(),
 });
 
