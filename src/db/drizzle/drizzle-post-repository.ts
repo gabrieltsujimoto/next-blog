@@ -12,6 +12,7 @@ export class DrizzlePostRepository implements PostRepository {
   }
   async findAll(): Promise<PostModel[]> {
     const query = await drizzleDb.query.postsTable.findMany({});
+    console.log(query);
     return query;
   }
   async findById(searchId: string): Promise<PostModel> {

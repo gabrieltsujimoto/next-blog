@@ -3,8 +3,8 @@ import { PostRepository } from './post-repository';
 
 import { readFile } from 'fs/promises';
 import { resolve } from 'path';
-import { env } from 'process';
 const ROOT_DIR = process.cwd(); //determina a raiz do projeto
+
 const JSON_POSTS_FILE_PATH = resolve(
   ROOT_DIR,
   'src',
@@ -13,36 +13,24 @@ const JSON_POSTS_FILE_PATH = resolve(
   'posts.json',
 );
 
-env.SIMULATE_WAIT_IN_MS = '0';
-
-const simulateWaitMs = Number(process.env.SIMULATE_WAIT_IN_MS) || 0;
-
 export class JsonPostRepository implements PostRepository {
-  async findAll(): Promise<PostModel[]> {
-    await this.simulateWait();
-
-    const posts = await this.readFromDisk();
-    return posts;
-  }
-  private async simulateWait() {
-    if (simulateWaitMs <= 0) return;
-
-    await new Promise(resolve => setTimeout(resolve, simulateWaitMs));
-  }
   private async readFromDisk(): Promise<PostModel[]> {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, 'utf-8');
     const parsedJson = JSON.parse(jsonContent);
     const { posts } = parsedJson;
     return posts;
   }
-  async findAllPublic(): Promise<PostModel[]> {
-    await this.simulateWait();
 
+  async findAll(): Promise<PostModel[]> {
+    const posts = await this.readFromDisk();
+    console.log(posts);
+    return posts;
+  }
+  async findAllPublic(): Promise<PostModel[]> {
     const posts = await this.readFromDisk();
     return posts.filter(post => post.published);
   }
   async findById(id: string): Promise<PostModel> {
-    await this.simulateWait();
     const posts = await this.findAllPublic();
     const post = posts.find(post => post.id === id);
 
@@ -52,7 +40,6 @@ export class JsonPostRepository implements PostRepository {
     return post;
   }
   async findBySlugPublic(slug: string): Promise<PostModel> {
-    await this.simulateWait();
     const posts = await this.findAllPublic();
     const post = posts.find(post => post.slug === slug);
 
