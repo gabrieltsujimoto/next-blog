@@ -15,11 +15,15 @@ export class DrizzlePostRepository implements PostRepository {
     return query;
   }
   async findById(searchId: string): Promise<PostModel> {
-    const post = await drizzleDb.query.postsTable.findMany({
+    const post = await drizzleDb.query.postsTable.findFirst({
       where: { id: { eq: searchId } },
     });
 
-    return post[0];
+    if (!post) {
+      throw new Error('ID não encontrado!');
+    }
+
+    return post;
   }
   async findBySlugPublic(searchSlug: string): Promise<PostModel> {
     const post = await drizzleDb.query.postsTable.findFirst({
