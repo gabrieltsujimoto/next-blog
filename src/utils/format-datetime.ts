@@ -11,6 +11,11 @@ export function formatDateTime(rawDate: string): string {
   });
 }
 
+export function formatHour(hour: number): string {
+  const date = format(hour, 'dd/MM/yyyy, hh:mm:ss');
+  return date;
+}
+
 export function formatDistanceToNow(rawDate: string): string {
   const date = new Date(rawDate);
 
