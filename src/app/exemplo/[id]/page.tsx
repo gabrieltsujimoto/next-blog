@@ -1,10 +1,9 @@
 import React from 'react';
-import { formatHour } from '@/utils/format-datetime';
 import { revalidateExampleAction } from '@/app/actions/revalidateExample';
-
-export const dynamic = 'force-static';
+import { getFormattedDate } from '@/components/FormattedDate';
 // export const dynamicParams = true;
-export const revalidate = 30; //intervalo de revalidação do cache - principio ISR
+// export const dynamic = 'force-static';
+// export const revalidate = 30; //intervalo de revalidação do cache - principio ISR
 
 // export async function generateStaticParams() {
 //   //geração estática, inicialmente só vai gerar id 1 e 2
@@ -17,11 +16,22 @@ export default async function ExemploDynamicPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  // eslint-disable-next-line react-hooks/purity
-  const hour = formatHour(Date.now());
+
+  const hour = await getFormattedDate();
+
+  const response = await fetch('https://randomuser.me/api/?results=1', {
+    next: {
+      tags: ['randomuser'],
+      revalidate: 30,
+    },
+  });
+
+  const json = await response.json();
+  const firstName = json.results[0].name.first;
 
   return (
     <main>
+      <p>Nome recebido na requisição do fetch: {firstName}</p>
       <div>
         Hora: {hour} ID:{id}
       </div>

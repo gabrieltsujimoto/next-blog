@@ -25,6 +25,11 @@ export function formatDistanceToNow(rawDate: string): string {
   });
 }
 
+export async function formatHourCached() {
+  // cacheLife('dev-default');
+  return formatHour(Date.now());
+}
+
 const rawDate = '2026-08-10T12:30:00Z';
 console.log(rawDate);
 console.log(formatDistanceToNow(rawDate), 'atrás');
