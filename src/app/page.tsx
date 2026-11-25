@@ -1,10 +1,11 @@
+'use cache';
 import { FeaturedPost } from '@/components/FeaturedPost';
 import { PostList } from '@/components/PostsList';
 import { SpinLoading } from '@/components/SpinLoading';
 
 import { Suspense } from 'react';
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <div>
       <Suspense fallback={<SpinLoading />}>
