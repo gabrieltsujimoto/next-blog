@@ -1,4 +1,4 @@
-import { findBySlugCached } from '@/lib/post/queries';
+import { findBySlugPublicCached } from '@/lib/post/queries/public';
 import React from 'react';
 import PostHeading from '../PostHeading';
 import { notFound } from 'next/navigation';
@@ -12,8 +12,11 @@ type SinglePostProps = {
   slug: string;
 };
 
+export const dynamic = 'force-static';
+
 export default async function SinglePost({ slug }: SinglePostProps) {
-  const post = await findBySlugCached(slug).catch(() => undefined);
+  'use cache';
+  const post = await findBySlugPublicCached(slug);
   if (!post) return notFound();
   return (
     <article>

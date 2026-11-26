@@ -50,4 +50,4 @@ export class JsonPostRepository implements PostRepository {
     return post;
   }
 }
-export const postRepo: PostRepository = new JsonPostRepository();
+export const oldPostRepo: PostRepository = new JsonPostRepository();

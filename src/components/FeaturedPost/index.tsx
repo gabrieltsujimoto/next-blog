@@ -1,16 +1,17 @@
 import React from 'react';
-import img from '../../../public/images/bryen_0.png';
 import Image from 'next/image';
 import clsx from 'clsx';
 import Link from 'next/link';
 import PostHeading from '../PostHeading';
-import { findAllPublicPostsCached } from '@/lib/post/queries';
+import { findAllPublicPostsCached } from '@/lib/post/queries/public';
 import { formatDateTime } from '@/utils/format-datetime';
+import { cacheTag } from 'next/cache';
 
 export async function FeaturedPost() {
+  'use cache';
   const posts = await findAllPublicPostsCached();
-  const post = posts[0];
-  const postLink = `/post/${post.slug}`;
+  const post = posts![0];
+  cacheTag('post');
   return (
     <div className='group'>
       <div
@@ -36,17 +37,19 @@ export async function FeaturedPost() {
             'overflow-hidden',
           )}
         >
-          <Link href={postLink}>
+          <Link href={`/post/${post.slug}`}>
             <Image
+              width={1280}
+              height={800}
               className='h-full group-hover:scale-110 object-center object-cover group-hover:transition-all group-hover:duration-700'
-              src={img}
+              src={`${post.coverImageUrl}`}
               alt={post.excerpt}
               priority
             />
           </Link>
         </div>
         <div className='gap-2 h-fit sm:h-full flex flex-col justify-center w-full p-2'>
-          <PostHeading url={postLink} as='h1'>
+          <PostHeading url={`/post/${post.slug}`} as='h1'>
             <h1>{post.title}</h1>
           </PostHeading>
           <div>

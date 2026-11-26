@@ -1,10 +1,12 @@
 import { PostItem } from '../PostItem';
 import clsx from 'clsx';
-import { findAllPublicPostsCached } from '@/lib/post/queries';
+import { findAllPublicPostsCached } from '@/lib/post/queries/public';
 import { PostModel } from '@/models/post/post-model';
 
 export async function PostList() {
   const posts = await findAllPublicPostsCached();
+
+  if (!posts) throw new Error();
 
   return (
     <div

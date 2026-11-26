@@ -22,7 +22,6 @@ export default async function ExemploDynamicPage({
   const response = await fetch('https://randomuser.me/api/?results=1', {
     next: {
       tags: ['randomuser'],
-      revalidate: 30,
     },
   });
 
